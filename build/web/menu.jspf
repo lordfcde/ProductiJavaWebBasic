@@ -1,0 +1,60 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <c:if test="${not empty sessionScope.USER}">
+                <p class="navbar-text">
+                    Welcome to 
+                    <span style="color: gray; font-weight: bold;">
+                        [<c:choose>
+                            <c:when test="${sessionScope.USER.roleInSystem ==1}">Admin</c:when>
+                            <c:otherwise>User</c:otherwise>
+
+                        </c:choose>] <!<!-- phan loai quyen role de ghi ten chao mung  --> 
+                    </span>
+                    <span style="color: red; font-weight: bold;">${sessionScope.USER.lastName} ${sessionScope.USER.firstName}</span>
+                </p>
+            </c:if>
+        </div>
+
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="MainController?action=welcome">Home</a></li>
+
+            <c:if test="${sessionScope.USER.roleInSystem == 1}">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Accounts <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="MainController?action=listAccs">List Accounts</a></li>
+                    </ul>
+                </li>
+            </c:if>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="MainController?action=listCats">List Categories</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="MainController?action=listProds">List Products</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <c:if test="${not empty sessionScope.USER}">
+                <li>
+                    <a href="MainController?action=logout" class="btn btn-default navbar-btn">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout
+                    </a>
+                </li>
+            </c:if>
+        </ul>
+    </div>
+</nav>

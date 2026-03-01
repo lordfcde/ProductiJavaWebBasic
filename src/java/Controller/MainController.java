@@ -46,8 +46,28 @@ public class MainController extends HttpServlet {
         }
         switch (action.toLowerCase()) {
             case "welcome":
+                if (user != null) {
+                    url = "index.jsp";
+                }
+                break;
+
+            case "login":
+                if (slSai <= 5) {
+                    url = "login";
+                } else {
+                    url = "denied.jsp";
+                }
+                break;
+
+            case "logout":
+                if (user != null) {
+                    url = "logOut";
+                }
+                break;
+
+            case "createlogin":
                 if (user == null) {
-                    url = "login.jsp";
+                    url = "createAccs.jsp";
                 } else {
                     url = "index.jsp";
                 }
@@ -55,67 +75,95 @@ public class MainController extends HttpServlet {
 
             case "listaccs":
                 if (user != null && user.getRoleInSystem() == 1) {
-                    url = "accounts"; //  cho Admin vào xem Account
+                    url = "accounts";
+                }
+                break;
+
+            case "insertacc":
+                if (user != null && user.getRoleInSystem() == 1) {
+                    url = "createAcc";
+                }
+                break;
+
+            case "xoaaccs":
+                if (user != null && user.getRoleInSystem() == 1) {
+                    url = "deleteAccs";
+                }
+                break;
+
+            case "updaccs":
+                if (user != null && user.getRoleInSystem() == 1) {
+                    url = "updateAccs";
                 }
                 break;
 
             case "listcats":
                 if (user != null) {
-                    url = "categories"; //
-
+                    url = "categories";
                 }
                 break;
-            case "listprods":
+
+            case "addcat":
                 if (user != null) {
-                    url = "ProductsController"; // 
-
+                    url = "createCats.jsp";
                 }
                 break;
-            case "logout":
+
+            case "createcat":
                 if (user != null) {
-                    url = "logOut";
+                    url = "createCat";
                 }
                 break;
-            case "login":
 
-                if (slSai <= 5) {
-
-                    url = "login";
-                } else {
-                    url = "denied.jsp";
-
-                }
-                break;
             case "xoacats":
                 if (user != null) {
-                    url = "deleteCats"; // 
-
+                    url = "deleteCats";
                 }
                 break;
 
             case "updcats":
                 if (user != null) {
-                    url = "updateCats"; // 
-
+                    url = "updateCats";
                 }
                 break;
 
-            case "xoaaccs":
+            case "listprods":
                 if (user != null) {
-                    url = "deleteAccs"; // 
-
+                    url = "products";
                 }
                 break;
 
-            case "updaccs":
+            case "addprod":
                 if (user != null) {
-                    url = "updateAccs"; // 
+                    url = "LoadAddProdController";
+                }
+                break;
 
+            case "createprod":
+                if (user != null) {
+                    url = "createProd";
+                }
+                break;
+
+            case "xoaprods":
+                if (user != null) {
+                    url = "deleteProds";
+                }
+                break;
+
+            case "updprods":
+                if (user != null) {
+                    url = "loadProd";
+                }
+                break;
+
+            case "updateprod":
+                if (user != null) {
+                    url = "updateProd";
                 }
                 break;
         }
 
-        //4 Day lenh 
         request.getRequestDispatcher(url).forward(request, response);
     }
 

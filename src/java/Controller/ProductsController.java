@@ -4,16 +4,11 @@
  */
 package Controller;
 
-import DAO.ProductsDAO;
-import DTO.Products;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,19 +17,45 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vinhh
  */
+@WebServlet(name = "ProductsController", urlPatterns = {"/products"})
 public class ProductsController extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //1 Tao ket noi qua jpa ( DB)
-        request.setCharacterEncoding("UTF-8");
-        //2. Tao Dao
-        ProductsDAO dao = new ProductsDAO();
-        //3. Lay danh sach SP
-        List<Products> listProducts = dao.findProductsEntities();
-        //4. Dong goi du lieu gui sang JSP 
-        request.setAttribute("danhsachSP", listProducts);
+      
+        DAO.ProductsDAO dao = new DAO.ProductsDAO();
+
+       
+        List<DTO.Products> list = dao.findProductsEntities();
+
+        
+        request.setAttribute("danhsachProds", list);
+
+        
         request.getRequestDispatcher("products.jsp").forward(request, response);
     }
 
@@ -49,7 +70,7 @@ public class ProductsController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**

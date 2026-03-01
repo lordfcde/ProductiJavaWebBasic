@@ -51,7 +51,7 @@ public class UpdateAccController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("acc");
-        
+
         AccountsDAO dao = new AccountsDAO();
         Accounts x = dao.findAccounts(id);
         request.setAttribute("acc", x);
@@ -76,15 +76,18 @@ public class UpdateAccController extends HttpServlet {
         String lName = request.getParameter("accLastName");
         String fName = request.getParameter("accFirstName");
         String bday = request.getParameter("accBirth");
-        Date birth = Date.valueOf(bday);
         String gender = request.getParameter("accGender");
-        Boolean gen = Boolean.parseBoolean(gender);
         String phone = request.getParameter("accPhone");
         String roleInSystem = request.getParameter("accRole");
         int role = Integer.parseInt(roleInSystem);
-        
+        String isUse = request.getParameter("isUse");
+
         try {
+            Boolean uisUse = Boolean.valueOf(isUse);
+            Boolean gen = Boolean.valueOf(gender);
+            Date birth = Date.valueOf(bday);
             Accounts x = dao.findAccounts(acc);
+            x.setIsUse(uisUse);
             x.setPass(pwd);
             x.setLastName(lName);
             x.setFirstName(fName);
@@ -93,7 +96,7 @@ public class UpdateAccController extends HttpServlet {
             x.setPhone(phone);
             x.setRoleInSystem(role);
             dao.edit(x);
-            
+
         } catch (Exception e) {
             String errmsg = "Cannot update the accounts , please try again";
             request.setAttribute("errmsg", errmsg);
@@ -101,7 +104,7 @@ public class UpdateAccController extends HttpServlet {
             return;
         }
         response.sendRedirect("MainController?action=listaccs");
-        
+
     }
 
     /**

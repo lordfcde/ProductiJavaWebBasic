@@ -10,6 +10,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,6 +35,7 @@ public class Categories implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY) // tu dong add id va tang dan 
     @Basic(optional = false)
     @Column(name = "typeId")
     private Integer typeId;
@@ -114,5 +116,5 @@ public class Categories implements Serializable {
     public String toString() {
         return "model.Categories[ typeId=" + typeId + " ]";
     }
-    
+
 }

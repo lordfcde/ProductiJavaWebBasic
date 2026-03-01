@@ -47,17 +47,22 @@
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
+            <div style="margin-top: 15px;">
+                <a href="MainController?action=createlogin" class="btn btn-link" style="padding-left: 0;">
+                    <span class="glyphicon glyphicon-plus"></span> Create New Account
+                </a>
+            </div>
         </div>
-        
+
         <c:if test="${not empty errmsg}">
-             <div class="alert alert-warning">
-            <strong>Warning!</strong>${errmsg}
-        </div>
+            <div class="alert alert-warning">
+                <strong>Warning!</strong>${errmsg}
+            </div>
         </c:if>
 
-     
 
-   
 
-</body>
+
+
+    </body>
 </html>

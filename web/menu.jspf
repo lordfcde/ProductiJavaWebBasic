@@ -12,7 +12,7 @@
                             <c:when test="${sessionScope.USER.roleInSystem ==1}">Admin</c:when>
                             <c:otherwise>User</c:otherwise>
 
-                        </c:choose>] <!<!-- phan loai quyen role de ghi ten chao mung  --> 
+                        </c:choose>] <!-- phan loai quyen role de ghi ten chao mung  --> 
                     </span>
                     <span style="color: red; font-weight: bold;">${sessionScope.USER.lastName} ${sessionScope.USER.firstName}</span>
                 </p>
@@ -26,7 +26,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Accounts <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="MainController?action=listAccs">List Accounts</a></li>
+                        <li><a href="MainController?action=listaccs">List Accounts</a></li>
                     </ul>
                 </li>
             </c:if>
@@ -34,27 +34,45 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="MainController?action=listCats">List Categories</a></li>
+                    <li><a href="MainController?action=listcats">List Categories</a></li>
+                    <li><a href="MainController?action=addcat">Create New Category</a></li>
                 </ul>
             </li>
 
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="MainController?action=listProds">List Products</a></li>
+                    <li><a href="MainController?action=listprods">List Products</a></li>
+                    <c:if test="${sessionScope.USER.roleInSystem == 1}">
+                    <li><a href="MainController?action=addprod">Create New Product</a></li>
+                    </c:if>
                 </ul>
             </li>
 
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-            <c:if test="${not empty sessionScope.USER}">
-                <li>
-                    <a href="MainController?action=logout" class="btn btn-default navbar-btn">
-                        <span class="glyphicon glyphicon-log-out"></span> Logout
-                    </a>
-                </li>
-            </c:if>
+            <c:choose>
+                <c:when test="${not empty sessionScope.USER}">
+                    <li>
+                        <a href="MainController?action=logout" class="btn btn-default navbar-btn">
+                            <span class="glyphicon glyphicon-log-out"></span> Logout
+                        </a>
+                    </li>
+
+                </c:when>
+                <c:otherwise>
+                    <li>
+                        <a href="login.jsp" class="btn btn-primary navbar-btn" style="margin-right: 15px;">
+                            <span class="glyphicon glyphicon-log-in"></span> Login
+                        </a>
+                    </li>
+                </c:otherwise>
+
+
+
+
+            </c:choose>
         </ul>
     </div>
 </nav>

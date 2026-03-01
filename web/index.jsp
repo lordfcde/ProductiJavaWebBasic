@@ -21,22 +21,40 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <title>Homepage</title>
         <style>
-    
-    .carousel-inner > .item > img {
-        width: 100%;       /* Luôn rộng hết cỡ khung hình */
-        height: 800px;     /* Bạn có thể chỉnh con số này cho vừa mắt (ví dụ 400px hoặc 600px) */
-        object-fit: cover; /* Quan trọng: Giúp ảnh không bị méo/bẹp khi co giãn */
-    }
 
-    /* Đảm bảo khung Carousel có nền đen để ảnh trông chuyên nghiệp hơn */
-    .carousel-inner {
-        background-color: #000;
-    }
-</style>
+            .carousel-inner > .item > img {
+                width: 100%;       /* Luôn rộng hết cỡ khung hình */
+                height: 800px;     /* Bạn có thể chỉnh con số này cho vừa mắt (ví dụ 400px hoặc 600px) */
+                object-fit: cover; /* Quan trọng: Giúp ảnh không bị méo/bẹp khi co giãn */
+            }
+
+            /* Đảm bảo khung Carousel có nền đen để ảnh trông chuyên nghiệp hơn */
+            .carousel-inner {
+                background-color: #000;
+            }
+            .container {
+                padding: 80px 120px;
+            }
+
+            .main-content-area {
+                background-image: url('images/test.gif');
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+            }
+        </style>
     </head>
-    
+
     <body>
         <%@include file ="menu.jspf" %>
+
+        <div class="container text-center main-content-area">
+            <h3>THE PRODUCT</h3>
+            <p style="color: white"><em>We love Product</em></p>
+            <p style="color: white">We have created a fictional product  website. Let's buy something.</p>
+            <a href="MainController?action=welcome" class="btn btn-primary">Explore the website</a>
+        </div>
+
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -82,5 +100,8 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
+
+
+
     </body>
 </html>

@@ -100,12 +100,24 @@
                     <button type="submit" class="btn btn-default">Save</button>
                 </div>
             </div>
-            <c:if test="${not empty errmsg}">
-                <div class="alert alert-warning">
-                    <strong>Warning! </strong>${errmsg}
-                </div>
-            </c:if>
-        </form>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Account Status:</label>
+                <div class="col-sm-10">
+                    <div class="checkbox">
+                        <label>
 
+                            <input type="checkbox" name="isUse" value="true" ${acc.isUse ? 'checked' : ''}> 
+                            Active Account
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+        <c:if test="${not empty errmsg}">
+            <div class="alert alert-warning">
+                <strong>Warning! </strong>${errmsg}
+            </div>
+        </c:if>                       
     </body>
 </html>
